@@ -1,0 +1,8 @@
+{
+  "name": "Grupetto",
+  "version": "0.0.1",
+  "dependencies": {
+    "materialize": "0.97.6"
+  },
+  "private": true
+}
