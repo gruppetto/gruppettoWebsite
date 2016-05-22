@@ -1,0 +1,8 @@
+language: node_js
+node_js:
+  - "4.2"
+before_script:
+  - npm install -g gulp
+script: gulp
+notifications:
+  slack: grupetto:tBoqgCKai9ikY4CCCy53qird
