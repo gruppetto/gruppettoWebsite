@@ -5,10 +5,9 @@ before_script:
   - npm install -g gulp
 script: gulp
 after_success:
-- chmod 600 deploy-key
-- mv deploy-key ~/.ssh/id_rsa
-- git remote add deploy ssh://git@37.59.53.73/var/git/site.git
-- git push deploy
+  - chmod 600 deploy-key
+  - mv deploy-key ~/.ssh/id_rsa
+  - scp -i ~/.ssh/id_rsa dist/* root@37.59.53.73:/var/www/html/gruppettoTest
 before_install:
 - echo -e "Host 37.59.53.73\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 - openssl aes-256-cbc -K $encrypted_ba4901fbe465_key -iv $encrypted_ba4901fbe465_iv
