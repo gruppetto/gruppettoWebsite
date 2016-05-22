@@ -5,10 +5,12 @@ before_script:
   - npm install -g gulp
 script: gulp
 after_success:
+  - eval "$(ssh-agent -s)
   - chmod 600 deploy-key
-  - scp -i deploy-key dist/* root@37.59.53.73:/var/www/html/gruppettoTest
+  - mv deploy-key ~/.ssh/id_rsa
+  - scp -i ~/.ssh/id_rsa dist/* root@37.59.53.73:/var/www/html/gruppettoTest
 before_install:
-- echo -e "Host 37.59.53.73\n\tStrictHostKeyChecking no\n" >> deploy-key
+- echo -e "Host 37.59.53.73\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 - openssl aes-256-cbc -K $encrypted_ba4901fbe465_key -iv $encrypted_ba4901fbe465_iv
   -in deploy_key.enc -out deploy_key -d
 notifications:
