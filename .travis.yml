@@ -6,10 +6,9 @@ before_script:
 script: gulp
 after_success:
   - chmod 600 deploy-key
-  - mv deploy-key ~/.ssh/id_rsa
-  - scp -i ~/.ssh/id_rsa dist/* root@37.59.53.73:/var/www/html/gruppettoTest
+  - scp -i deploy-key dist/* root@37.59.53.73:/var/www/html/gruppettoTest
 before_install:
-- echo -e "Host 37.59.53.73\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+- echo -e "Host 37.59.53.73\n\tStrictHostKeyChecking no\n" >> deploy-key
 - openssl aes-256-cbc -K $encrypted_ba4901fbe465_key -iv $encrypted_ba4901fbe465_iv
   -in deploy_key.enc -out deploy_key -d
 notifications:
