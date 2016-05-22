@@ -1,0 +1,34 @@
+{
+  "name": "grupetto",
+  "version": "0.0.1",
+  "description": "Gruppetto website",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://mdeligny@github.com/mdeligny/grupetto.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mdeligny/grupetto/issues"
+  },
+  "homepage": "https://github.com/mdeligny/grupetto#readme",
+  "devDependencies": {
+    "gulp": "latest",
+    "gulp-load-plugins": "latest",
+    "gulp-rename": "latest",
+    "gulp-csso": "latest",
+    "gulp-csscomb": "latest",
+    "gulp-cssbeautify": "latest",
+    "gulp-autoprefixer": "latest",
+    "gulp-uglify": "latest",
+    "gulp-imagemin": "latest",
+    "gulp-concat": "latest",
+    "merge-stream": "latest",
+    "del": "latest",
+    "gulp-html-replace": "latest"
+  }
+}
