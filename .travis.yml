@@ -1,30 +1,23 @@
 language: node_js
 node_js:
-  - "4.2"
+- '4.2'
 before_script:
-  - npm install -g gulp
+- npm install -g gulp
 script: gulp
 env:
   global:
-    secure: "uwtd4z0/1J29Sj4vBouqg1JlY1f1lHigvCy36Pj6HuQab4mcaEb/UdBtHsuZ9PStilQdy+kQbMA4Qi0wpVIzVIiXOWE6GywGtItw2KzUQM9QJotdX9n6LbmYIvA/XH/d4T3rpBN1KEdJSSiAPDhj4q8lbYFBwhSbTeEHMOhJXOCHr+OU8kGyj9gILmD85B5wfLS0J29tI44xX2aqepxb4oOavREQn2lysTS4uj/cxvLS5ZH7z5ki5wgfzp/4ORsnMDOEGVRl7CxBZLMxjb+N8FvaLiNG+xUlGsACU9nT34uzR13HBaaFGPbLj5yT9SH9D5PohaI+czE89AYZp1lC8txwV8bgV7T1VbXnr329lrqd6cQPc+CZBjebARUur8G+Yx1CHrNIxYl78oY+UebNAA1w9iqIGTJdu8msdx4mG3im3mSrOQRL8LVRS0rGkcmQGEPen/wz57wO5cIrekdv56bBCrrTI4qvtcEPg5yLFxMFBEEErMYEoJhKJ73/LNfLAT5KSBEbL5OuBqX5b3H5lBDWoieFmtBys8RuwpzaY1zVJe45aSYsZHaP/xRdKYzm5LGjluPbP+ZKcm0H0szkyNXwV7f9gqZTdpynlBakML543103E+azhYQdY6jTADdf/SyWEjiybVvzIwnyQEVxIhm3qNSDKgNNRoDZ3aTfi4Q="
-    secure: "bnN7MbvmKH3B7uDmGntOuwSU53B9D2T+eOuzM+aHRFO3t/KnoLlPcN6BFvKUrnaQd4Bm3SYuns6Udkg3SjJ1Zjd60UsQUvN5C3C1diJu6mILirk/2FLVm0lIPh0IoYi+7GHcmSLmSVt8Kpa/jQFs+8l3V3bkw5VZkApolyaRYrulEqqtJpJj5bPTxncb7D25WXfjKTWildZNBN3N2uj6hJdxSSYIbRdTzNTrNY1RuyJq5IdiFM/IXIsErAfdvPuACL7xkk26KxcIfgsDAOJsp4K/JueAQ3O8A0nZ86Kkem6RqNvnciVdbVwIWXFZwhuALzsqBa3PcJVNYjXB+Mc5tMVtPN9FSxhqxHQ9e9UY2M6EAiG/JlMqigQS5qwwexxr3wB8EV1VdKMDLR/tfEro++PHwIU/DpkeRaqA6JNBRivkoky49Fg7QlPnRsPJpv5xmTk8qox82J07IkZzWELrZeKpkSrqrESQYi195/6ZEj+pEM2quDM8IZfQR6vH4gYXRDyRfnamfkFLQdjE4h7bPq0nfb+sG4z2oV5tkJ1DIPgzCWPRz76W8gaq37QU+9QveUNqWbUOKABZucI5SjWLEoJbAwnvrCvYMThvcWtz7C2bMukpDlcKxPSpHETPIjROlUddaGoqPzGae18wwGRniEgoMngJRCMTIVOFsLijNzc="
-    secure: "Oy0+5ORYq1+m9P/OAUfh2Tt+ryR8l7rQrwpeq5afUshUynjaZs9CO3xcGWIg6vKnCx2csxoIZ2ZK5OEFm1ZdqacBuEEHkH7Jw+b/5DWYSq+G/WzWXeDUJGt7S5e9MJg/Wepc5QBUTz/Q60ZTrj3VvaNxIU7ZoOMIbdMo3VTMGKsC+OFvXnKOW98dbjYX3jcssOseeN2fBX/mKYYK0wFjmd+GFUuwES4oNOVFnTcNNg/RFxLz6jAI+lz+d7OJCBSk+YdalIh50YNgtmvhLNpNkUGUxbbyp4y02T7Th0qoF2z6yTMKty1L+CoewHOcfJY1RYZ7gM9X3wLEWFlncQjcuycun4IavttQegbU9o5XzWCSPF+yltYM4kkf5y0XKowfkfCbvzcDkS0XgBKvfYzs8HRKW70ViDpZOw1/2pmAg92p7+uweHbTNEKD59PLtJP8kAHqdKxewMwwo0JzCROj0nSyKdqVFmGPo56qYvwzX/N7pIImwSTZpSSPOi9SdON3wDHMDVVmJAe7seL9tSSdklPHu4bdeyBF8ZCk8ZevnHjWnxtGI9OvknBjQ+B2X0GO8TtVG2chLSGj9TFECNGkC5C8602wHoUMOa4/LpDg5jvrdfTvT45/gLpLUNvZZ2ozy5GTCP7ozrY84xSwDMHwMfTRvxsBCJfWZvFUJoS26b8="
-    secure: "Lspn+N9BwTtGEyDi5XDZyKHKDdVgOAZWb6lil/h93e5L1guDun4QNntaMG+Y+t31naFrT+ITHhRIpbI0XCmfh0qaonaDFgooOP2W8EylWX0L0w2hL3bca7+qE0IOf7itiN0cDgHA9u2MfAIM3On+dy+cSwTURntxivfRlE60tRh6okNSq49aLzOo7z4AS0xxHAh5rtu1qFVIU/keVUmDG+dgHVG1PccRpLa3faVev+RJrHev3jFGasjMThugy1x5+fXA2ysxUKSeWcPasGm82yWEj9wgMpwSgOI1IJ94UoulKGltgopwU98UtCeRkLpxyYHwYy6qvFWlf8HbygQ8sn67tgyt6TDFojPtlLgmXFFlMPvWW2RAIT0ZKI+wZ7t9vvr8ybH1zXGlbdJ2zrFztLD0HcwBNpsN5vcc6Wnwt1PFGiAt4VRlRHf5NSWBKnfshZvGsHhix97c1bM+lDZwUXLCfvgIlft4qMHxiMzImCjeriV3dGrxu/6FqHD0znNWh/PpASLQkf6BZnMbkkdwcXYxwMAdjlsyEofk0A7MYa5wND4spm9Ee34oQJVjlxUyZDVZVfcjTn8SnAZnypu7gI6sWtF0DIZsgSFxX9p7Cy8zSoIG0ReVZAXWIzEDw5u4F0U23py9F845k3SnSBZeePAZ3MKEPyQq1aNo17JeCmo="
+    secure: Lspn+N9BwTtGEyDi5XDZyKHKDdVgOAZWb6lil/h93e5L1guDun4QNntaMG+Y+t31naFrT+ITHhRIpbI0XCmfh0qaonaDFgooOP2W8EylWX0L0w2hL3bca7+qE0IOf7itiN0cDgHA9u2MfAIM3On+dy+cSwTURntxivfRlE60tRh6okNSq49aLzOo7z4AS0xxHAh5rtu1qFVIU/keVUmDG+dgHVG1PccRpLa3faVev+RJrHev3jFGasjMThugy1x5+fXA2ysxUKSeWcPasGm82yWEj9wgMpwSgOI1IJ94UoulKGltgopwU98UtCeRkLpxyYHwYy6qvFWlf8HbygQ8sn67tgyt6TDFojPtlLgmXFFlMPvWW2RAIT0ZKI+wZ7t9vvr8ybH1zXGlbdJ2zrFztLD0HcwBNpsN5vcc6Wnwt1PFGiAt4VRlRHf5NSWBKnfshZvGsHhix97c1bM+lDZwUXLCfvgIlft4qMHxiMzImCjeriV3dGrxu/6FqHD0znNWh/PpASLQkf6BZnMbkkdwcXYxwMAdjlsyEofk0A7MYa5wND4spm9Ee34oQJVjlxUyZDVZVfcjTn8SnAZnypu7gI6sWtF0DIZsgSFxX9p7Cy8zSoIG0ReVZAXWIzEDw5u4F0U23py9F845k3SnSBZeePAZ3MKEPyQq1aNo17JeCmo=
 addons:
-    apt:
-        packages:
-            - sshpass
-#after_success:
-#  - eval "$(ssh-agent -s)
-#  - chmod 600 deploy-key
-#  - mv deploy-key ~/.ssh/id_rsa
-#  - scp -i id_rsa dist/* root@37.59.53.73:/var/www/html/gruppettoTest
-#before_install:
-#- echo -e "Host 37.59.53.73\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-#- openssl aes-256-cbc -K $encrypted_ba4901fbe465_key -iv $encrypted_ba4901fbe465_iv
-#  -in deploy_key.enc -out deploy_key -d
+  apt:
+    packages:
+    - sshpass
 after_success:
-    - export SSHPASS=$DEPLOY_PASS
-    - sshpass -e scp dist $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+- export SSHPASS=$DEPLOY_PASS
+- sshpass -e scp dist $DEPLOY_DEST
 notifications:
   slack: grupetto:tBoqgCKai9ikY4CCCy53qird
+DEPLOY_DEST=root@37:
+  '59':
+    '53':
+      73:/var/www/html/gruppettoTest:
+        secure: dmsRFlQ9bRvvfMEjjJjomkrdqci1pR29l0TidHQEuo5sUXErl7gK5aQTCXYOUT3Z4lHJdlGWdwvb4VxG1w3jKfcFeNaL4hMWL6ZnMZdbCuiwXwJQq/0CfBFzOQSN6KE1FkQp0JOWe4//7F+rdznn1J+mcrXW684yKfw5zeT3+b4VEb/GB5boFJ3O8osNJqpcJlXd3dBTaTV5teG4PbGoNOcEh2mG2Ift5gAJsz2B2iw8j9HMCmuCvx7FHf/yeZPbYfzugWMZtG9Z6qCteefXmm0DER96uV94TynTvFj4/bqjtBlnM3QbbcUc/yUeuSDKqiZAFUNkKqTtRqIK3BJLmH0IaBQZV8b8M05V8sGRTPmaa1g9W7mWLjpKnVe6pf9m35YrLfYjAqZW5w4HeU9X6I0BUMIM0uBCg3szmW+b/WxHI2z1d75gPMDMlAXh75wkgWRvOJ3oMV9CyjBuEAC8ikN3qkhpkHb16bzGYT/2XZU75jsABL1tl8iAZMKegVhAEfyehBnH1HzRfcN1avP4TOaKf3rLXvttnHER+75zjpyMIT+ma0QMQXnmB0Vf6vBKlpRH87NY8EUEdNCr2FuyjJYimiAE4bPisRZWZ9WzaGMKvY2aTwZUrXYJBltLU1+uELxs6fIwwY5G5Mq2Xb+mBtmTKxDSF9+bJIZ9ttQPrqA=
