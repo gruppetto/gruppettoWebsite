@@ -76,7 +76,7 @@ function testAPI() {
 
     var body = {
       fbId : response.id,
-      userName : response.name,
+      name : response.name,
       pictureUrl : response.picture.data.url,
       email: response.email
     };
