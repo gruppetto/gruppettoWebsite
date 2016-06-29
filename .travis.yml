@@ -4,10 +4,5 @@ node_js:
 before_script:
 - npm install -g gulp
 script: gulp
-deploy:
-  provider: heroku
-  app: gruppetto
-  api_key:
-    secure: VDO02uoicB/c7n5pmHl0FUzg+VnmLpRT76hJsVtUxEwV3zxqvW+Kaqdx6JkyCD88+3zEdqlZ05tCr/RlXkzJjxziRDGO+cIUPb2iYf4+Uu/i9gKOGfJf1OOy0XFtZsHi/WyIyaKNrqxeo2gyZkbzUQY3tvzhGGw/OXIYKd3BIW0TbWVR++bcmj/6fFZTUCuJYIGMgctR8IeEdd0pxSjHMntXn1Sjebr3pGC1XNTr58EirMlu9MacClH7CMdsCXvYfYgTWiy7/6PAjb8fPzJ7VeGFEnYIky/DVZnOrPB4jqDaVwLoLW2W/B0xFAhyKy+amDdKfUjEf5RQFVtSyfJ0BYA2jFWzzmA8lsB/XNFiQgxmIRoW/pQJ0n7hq//BPVKZYmmtbuxwamFZEPr9v433/ktihoolNzEZyFay9kQcvVC2185jCGL4sUv7MS6f9R+91Ieabe886Wctq/4wzI/WK+6D3ji56rJ6SO1Dmjfbu2Y4Zll+v+0b0G6Yy2DoVTPp20T6Ri9PVCCFq+Tbv4MfSU1igA6A+bPzhZ3uAmifuR7CAwtUjhqVKDiP+eKM8VQyQzasTz2m/LySs7NWq1Zg68uSuZURHkfXWtlyRhDaGtxxahaw1Jh8CdspHNtoMnWS0m5QlzNlBmAirHSb5LcyfTQXWHZw7Nei0+FMC7Owglw=
 notifications:
   slack: grupetto:tBoqgCKai9ikY4CCCy53qird

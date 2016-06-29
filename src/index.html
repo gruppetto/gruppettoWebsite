@@ -21,7 +21,9 @@
     <div class="nav-wrapper container">
       <a id="logo-container" href="#" class="brand-logo"><img src="./assets/img/logo1.png" class="responsive-img" /></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#" class="white-text">Connexion</a></li>
+        <li id="status">
+          <div style="display:flex; margin-top:20px;" class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false"></div>
+        </li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
@@ -142,16 +144,16 @@
           <ul>
             <li><a class="white-text" href="#!">Le concept</a></li>
             <li><a class="white-text" href="#!">Ravitaillement de conseils</a></li>
-            <li><a class="white-text" href="#!">Se connecter</a></li>
+            <li><div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="true"></div></li>
           </ul>
         </div>
         <div class="col l3 s6">
           <h5 class="white-text">Contact</h5>
           <ul>
-            <li><a class="white-text" href="#!">hello@gruppetto</a></li>
-            <li><a class="white-text" href="#!">Facebook</a></li>
-            <li><a class="white-text" href="#!">Twitter</a></li>
-            <li><a class="white-text" href="#!">On recrute</a></li>
+            <li><a class="white-text" >contact.gruppetto@gmail.com</a></li>
+            <li><a class="white-text" href="https://www.facebook.com/GruppettoSports">Facebook</a></li>
+            <li><a class="white-text" href="https://www.instagram.com/gruppettosports">Instagram</a></li>
+            <li><a class="white-text" href="#">On recrute</a></li>
           </ul>
         </div>
       </div>
@@ -169,6 +171,7 @@
 
   <!-- build:js -->
   <script src="assets/js/init.js"></script>
+  <script src="assets/js/fbLogin.js"></script>
   <!-- endbuild -->
 
   </body>
