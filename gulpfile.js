@@ -1,81 +1,75 @@
-// Requis
 var gulp = require('gulp');
+var sass = require('gulp-sass');
+var browserify = require('browserify');
+var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
+var jshint = require('gulp-jshint');
+var browserSync = require('browser-sync').create();
+var uglify = require('gulp-uglify');
+var concat = require('gulp-concat');
+var environments = require('gulp-environments');
 
-// Include plugins
-var plugins = require('gulp-load-plugins')(); // tous les plugins de package.json
-var merge = require('merge-stream');
-var del = require('del');
-var htmlreplace = require('gulp-html-replace');
+var development = environments.development;
+var production = environments.production;
+/** load config file based on enviroment */
+var configFile = production() ? "./src/env/prod.js" : "./src/env/dev.js";
 
-// Variables de chemins
-var source = './src'; // dossier de travail
-var destination = './dist'; // dossier à livrer
-
-gulp.task('clean', function () {
-  return del(['dist']);
+gulp.task('lint', function() {
+  return gulp.src('./src/app/**/*.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
 });
 
-gulp.task('css', ['clean'], function () {
-  return gulp.src(source + '/assets/css/style.css')
-    .pipe(plugins.csscomb())
-    .pipe(plugins.cssbeautify({indent: '  '}))
-    .pipe(plugins.autoprefixer())
-    .pipe(plugins.csso())
-    .pipe(plugins.concat('style.min.css'))
-    .pipe(gulp.dest(destination + '/assets/css/'));
+gulp.task('scripts', function(){
+	return gulp.src(['./src/assets/**/*.js',configFile])
+			.pipe(uglify())
+			.pipe(concat('vendor.min.js'))
+			.pipe(gulp.dest('./public/'));
 });
 
-gulp.task('js', ['clean'], function () {
-  return gulp.src(source + '/assets/js/init.js')
-    .pipe(plugins.uglify())
-    .pipe(plugins.concat('script.min.js'))
-    .pipe(gulp.dest(destination + '/assets/js/'));
+gulp.task('browserify', function() {
+    // Grabs the app.js file
+    return browserify('./src/app/app.js')
+        // bundles it and creates a file called main.js
+        .bundle()
+        .pipe(source('main.js'))
+        .pipe(gulp.dest('./public/'));
 });
 
-gulp.task('img', ['clean'], function () {
-  return gulp.src(source + '/assets/img/*.{ico,png,jpg,jpeg,gif,svg}')
-    .pipe(plugins.imagemin())
-    .pipe(gulp.dest(destination + '/assets/img'));
+gulp.task('copy', ['browserify','scss'], function() {
+		gulp.src( './src/assets/img/*')
+			.pipe(gulp.dest('./public/assets/img'));
+
+    gulp.src(['./src/**/*.html','./src/**/*.css'])
+        .pipe(gulp.dest('./public'))
+		.pipe(browserSync.stream())
 });
 
-gulp.task('copy', ['clean'], function () {
-  var css = gulp.src(source + '/assets/css/materialize.css')
-    .pipe(gulp.dest(destination + '/assets/css'));
-
-  var jquery = gulp.src(source + '/assets/js/jquery.js')
-    .pipe(gulp.dest(destination + '/assets/js'));
-
-  var materialize = gulp.src(source + '/assets/js/materialize.js')
-    .pipe(gulp.dest(destination + '/assets/js'));
-
-  var html = gulp.src(source + '/*.html')
-    .pipe(gulp.dest(destination));
-
-  var font = gulp.src(source + '/assets/font/*/*')
-    .pipe(gulp.dest(destination + '/assets/font'));
-
-  var fonts = gulp.src(source + '/assets/fonts/*/*')
-    .pipe(gulp.dest(destination + '/assets/fonts'));
-
-  return merge(css, jquery, materialize, html, font, fonts);
+gulp.task('scss', function() {
+    gulp.src('./src/assets/scss/*.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./src/assets/stylesheets/'));
 });
 
-gulp.task('replace', ['clean', 'copy'], function () {
-  gulp.src(destination + '/index.html')
-    .pipe(htmlreplace({
-      'css': './assets/css/style.min.css',
-      'js': './assets/js/script.min.js'
-    }))
-    .pipe(gulp.dest(destination));
+gulp.task('build',['lint', 'scss', 'copy', 'scripts']);
+
+gulp.task('browser-sync', ['build'], function() {
+    browserSync.init({
+        server: {
+            baseDir: "./public",
+			// The key is the url to match
+			// The value is which folder to serve (relative to your current working directory)
+			routes: {
+				"/bower_components": "bower_components",
+				"/node_modules": "node_modules"
+			}
+        },
+		browser:"chrome"
+    });
 });
 
-// Tâche "build"
-gulp.task('build', ['css', 'js', 'img', 'copy', 'replace']);
 
-// Tâche "watch" = je surveille *less
-gulp.task('watch', function () {
-  gulp.watch(source + '/assets/css/*.css', ['build']);
+gulp.task('default', ['browser-sync'], function(){
+	gulp.watch("./src/**/*.*", ["build"]);
+	gulp.watch("./public/**/*.*").on('change', browserSync.reload);
 });
-
-// Tâche par défaut
-gulp.task('default', ['build']);

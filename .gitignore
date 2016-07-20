@@ -101,4 +101,4 @@ bower_components
 .bower-tmp
 
 ### build ###
-dist
+public
