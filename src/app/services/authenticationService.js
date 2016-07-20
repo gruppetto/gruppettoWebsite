@@ -84,6 +84,6 @@ angular.module('gruppettoApp.services', [])
         });
       });
 
-    }
+    };
 
   });

@@ -3,7 +3,7 @@ angular.module('gruppettoApp.header', [])
 
     $rootScope.$watch('user', function(n) {
       console.log(n);
-    })
+    });
 
   })
   .directive('gpHeader', function () {
