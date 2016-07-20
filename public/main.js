@@ -33767,6 +33767,7 @@ require('./shared/footer/footer.js');
 
 require('./components/home/home.js');
 require('./components/about/about.js');
+require('./components/account/account.js');
 
 angular.module('gruppettoApp',
   [
@@ -33776,7 +33777,8 @@ angular.module('gruppettoApp',
     'gruppettoApp.header',
     'gruppettoApp.footer',
     'gruppettoApp.home',
-    'gruppettoApp.about'
+    'gruppettoApp.about',
+    'gruppettoApp.account'
   ])
 
   .run(['$rootScope', '$window', 'sAuth',
@@ -33858,21 +33860,37 @@ angular.module('gruppettoApp',
         templateUrl: 'app/components/home/home.html',
         controller: 'homeCtrl'
       })
+      .when('/account', {
+        templateUrl: 'app/components/account/account.html',
+        controller: 'accountCtrl',
+        controllerAs: 'vm'
+      })
       .otherwise({
         redirectTo: '/'
       });
   });
-},{"./components/about/about.js":8,"./components/home/home.js":9,"./services/authenticationService.js":10,"./shared/footer/footer.js":11,"./shared/header/header.js":12,"angular":6,"angular-materialize":2,"angular-route":4}],8:[function(require,module,exports){
+},{"./components/about/about.js":8,"./components/account/account.js":9,"./components/home/home.js":10,"./services/authenticationService.js":11,"./shared/footer/footer.js":12,"./shared/header/header.js":13,"angular":6,"angular-materialize":2,"angular-route":4}],8:[function(require,module,exports){
 angular.module('gruppettoApp.about', [])
   .controller(function () {
 
   });
 },{}],9:[function(require,module,exports){
+angular.module('gruppettoApp.account', [])
+  .controller('accountCtrl', function ($rootScope) {
+
+    var vm = this;
+
+    vm.user = $rootScope.user;
+
+    console.log(vm.user.name);
+
+  });
+},{}],10:[function(require,module,exports){
 angular.module('gruppettoApp.home', [])
   .controller('homeCtrl', function () {
     console.log('hey');
   });
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 angular.module('gruppettoApp.services', [])
   .service('sAuth', function($rootScope) {
 
@@ -33962,7 +33980,7 @@ angular.module('gruppettoApp.services', [])
     };
 
   });
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 angular.module('gruppettoApp.footer', [])
   .directive('gpFooter', function () {
     return {
@@ -33970,11 +33988,11 @@ angular.module('gruppettoApp.footer', [])
       templateUrl: 'app/shared/footer/footer.html'
     };
   });
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 angular.module('gruppettoApp.header', [])
-  .controller('headerCtrl', function($rootScope) {
+  .controller('headerCtrl', function ($rootScope) {
 
-    $rootScope.$watch('user', function(n) {
+    $rootScope.$watch('user', function (n) {
       console.log(n);
     });
 

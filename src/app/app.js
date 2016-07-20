@@ -9,6 +9,7 @@ require('./shared/footer/footer.js');
 
 require('./components/home/home.js');
 require('./components/about/about.js');
+require('./components/account/account.js');
 
 angular.module('gruppettoApp',
   [
@@ -18,7 +19,8 @@ angular.module('gruppettoApp',
     'gruppettoApp.header',
     'gruppettoApp.footer',
     'gruppettoApp.home',
-    'gruppettoApp.about'
+    'gruppettoApp.about',
+    'gruppettoApp.account'
   ])
 
   .run(['$rootScope', '$window', 'sAuth',
@@ -99,6 +101,11 @@ angular.module('gruppettoApp',
       .when('/', {
         templateUrl: 'app/components/home/home.html',
         controller: 'homeCtrl'
+      })
+      .when('/account', {
+        templateUrl: 'app/components/account/account.html',
+        controller: 'accountCtrl',
+        controllerAs: 'vm'
       })
       .otherwise({
         redirectTo: '/'

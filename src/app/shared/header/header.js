@@ -1,7 +1,7 @@
 angular.module('gruppettoApp.header', [])
-  .controller('headerCtrl', function($rootScope) {
+  .controller('headerCtrl', function ($rootScope) {
 
-    $rootScope.$watch('user', function(n) {
+    $rootScope.$watch('user', function (n) {
       console.log(n);
     });
 
