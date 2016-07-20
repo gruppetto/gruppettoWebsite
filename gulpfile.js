@@ -8,6 +8,7 @@ var browserSync = require('browser-sync').create();
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var environments = require('gulp-environments');
+var gnf = require('gulp-npm-files');
 
 var development = environments.development;
 var production = environments.production;
@@ -51,7 +52,7 @@ gulp.task('scss', function() {
         .pipe(gulp.dest('./src/assets/stylesheets/'));
 });
 
-gulp.task('build',['lint', 'scss', 'copy', 'scripts']);
+gulp.task('build',['lint', 'scss', 'copy', 'npmdep', 'scripts']);
 
 gulp.task('browser-sync', ['build'], function() {
     browserSync.init({
@@ -66,6 +67,10 @@ gulp.task('browser-sync', ['build'], function() {
         },
 		browser:"chrome"
     });
+});
+
+gulp.task('npmdep', function() {
+	gulp.src(gnf(), {base:'./'}).pipe(gulp.dest('./public'));
 });
 
 
