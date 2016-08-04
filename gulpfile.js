@@ -1,110 +1,39 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var browserify = require('browserify');
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
-var jshint = require('gulp-jshint');
-var browserSync = require('browser-sync').create();
-var uglify = require('gulp-uglify');
-var concat = require('gulp-concat');
-var environments = require('gulp-environments');
-var gnf = require('gulp-npm-files');
-var _ = require('lodash');
+const gulp = require('gulp');
+const HubRegistry = require('gulp-hub');
+const browserSync = require('browser-sync');
 
+const conf = require('./conf/gulp.conf');
 
-var development = environments.development;
-var production = environments.production;
-/** load config file based on enviroment */
-var configFile = production() ? "./src/env/prod.js" : "./src/env/dev.js";
+// Load some files into the registry
+const hub = new HubRegistry([conf.path.tasks('*.js')]);
 
-gulp.task('lint', function () {
-  return gulp.src('./src/app/**/*.js')
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'));
-});
+// Tell gulp to use the tasks just loaded
+gulp.registry(hub);
 
-gulp.task('scripts', function () {
-  return gulp.src([
-    './src/assets/**/*.js',
-    configFile,
-    './node_modules/jquery/dist/jquery.min.js',
-    './node_modules/materialize-css/dist/js/materialize.min.js'
-  ])
-    .pipe(uglify())
-    .pipe(concat('vendor.min.js'))
-    .pipe(gulp.dest('./public/'));
-});
+gulp.task('inject', gulp.series(gulp.parallel('styles', 'scripts'), 'inject'));
+gulp.task('build', gulp.series('partials', gulp.parallel('inject', 'other'), 'build'));
+gulp.task('test', gulp.series('scripts', 'karma:single-run'));
+gulp.task('test:auto', gulp.series('watch', 'karma:auto-run'));
+gulp.task('serve', gulp.series('inject', 'watch', 'browsersync'));
+gulp.task('serve:dist', gulp.series('default', 'browsersync:dist'));
+gulp.task('default', gulp.series('clean', 'build'));
+gulp.task('watch', watch);
 
-gulp.task('browserify', function () {
-  // Grabs the app.js file
-  return browserify('./src/app/app.js')
-  // bundles it and creates a file called main.js
-    .bundle()
-    .pipe(source('main.js'))
-    .pipe(gulp.dest('./public/'));
-});
+function reloadBrowserSync(cb) {
+  browserSync.reload();
+  cb();
+}
 
-gulp.task('copy', ['browserify', 'scss'], function () {
-  gulp.src('./src/assets/img/*')
-    .pipe(gulp.dest('./public/assets/img'));
+function watch(done) {
+  gulp.watch([
+    conf.path.src('index.html'),
+    'bower.json'
+  ], gulp.parallel('inject'));
 
-  gulp.src(['./node_modules/materialize-css/dist/font/roboto/*.*'])
-    .pipe(gulp.dest('./public/assets/stylesheets/fonts/roboto'));
-
-  gulp.src(['./src/**/*.html'])
-    .pipe(gulp.dest('./public'))
-    .pipe(browserSync.stream());
-});
-
-gulp.task('scss', function () {
-  gulp.src('./src/assets/scss/*.scss')
-    .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./src/assets/stylesheets/'));
-});
-
-gulp.task('css', function() {
-  gulp.src(['./node_modules/materialize-css/dist/css/materialize.min.css'])
-    .pipe(concat('vendor.min.css'))
-    .pipe(gulp.dest('./public/assets/stylesheets/libs/'));
-
-  gulp.src(['./src/assets/stylesheets/style.css'])
-    .pipe(gulp.dest('./public/assets/stylesheets/'))
-});
-
-gulp.task('build', ['lint', 'scss', 'css', 'copy', 'scripts']);
-
-gulp.task('browser-sync', ['build'], function () {
-  browserSync.init({
-    server: {
-      baseDir: "./public",
-      // The key is the url to match
-      // The value is which folder to serve (relative to your current working directory)
-      routes: {
-        "/bower_components": "bower_components",
-        "/node_modules": "node_modules"
-      }
-    },
-    browser: "chrome"
-  });
-});
-
-
-gulp.task('copy-assets', function () {
-  var assets = {
-    js: [
-      './node_modules/jquery/dist/jquery.min.js',
-      './node_modules/materialize-css/dist/js/materialize.min.js'
-    ],
-    css: ['./node_modules/materialize-css/dist/css/materialize.min.css']
-  };
-  _(assets).forEach(function (assets, type) {
-    gulp.src(assets)
-      .pipe(gulp.dest('./public/assets/libs/' + type));
-  });
-});
-
-
-gulp.task('default', ['browser-sync'], function () {
-  gulp.watch("./src/**/*.*", ["build"]);
-  gulp.watch("./public/**/*.*").on('change', browserSync.reload);
-});
+  gulp.watch(conf.path.src('app/**/*.html'), reloadBrowserSync);
+  gulp.watch([
+    conf.path.src('**/*.css')
+  ], gulp.series('styles'));
+  gulp.watch(conf.path.src('**/*.js'), gulp.series('inject'));
+  done();
+}
