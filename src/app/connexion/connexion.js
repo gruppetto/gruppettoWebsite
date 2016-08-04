@@ -1,21 +1,14 @@
 angular
   .module('app')
-  .controller('connexionCtrl', function ($http) {
+  .controller('connexionCtrl', function ($window, AuthService) {
     var vm = this;
 
     vm.signin = function () {
-      $http({
-        method: 'POST',
-        url: 'http://gruppettoapi.herokuapp.com/authenticate',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        data: vm.user
-      })
+      AuthService.login(vm.user)
         .then(function (data) {
           console.log(data);
           if (data.data.success) {
-            console.log(data.data.token);
+            $window.open('/inside', '_self');
           }
           else {
             vm.errorMessage = data.data.msg;

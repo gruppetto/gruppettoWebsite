@@ -25,5 +25,11 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
       templateUrl: 'app/connexion/connexion.html',
       controller: 'connexionCtrl',
       controllerAs: 'vm'
+    })
+    .state('inside', {
+      url: '/inside',
+      templateUrl: 'app/inside/inside.html',
+      controller: 'insideCtrl',
+      controllerAs: 'vm'
     });
 }
