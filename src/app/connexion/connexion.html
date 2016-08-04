@@ -2,18 +2,12 @@
     <div class="card-panel">
         <div class="row">
             <div class="col s12">
-                <h1>Inscription</h1>
+                <h1>Connexion</h1>
             </div>
             <div class="col s12">
                 <span class="red-text" ng-show="vm.errorMessage"><i class="left material-icons">warning</i>{{vm.errorMessage}}</span>
             </div>
-            <form ng-submit="vm.signup()">
-                <div class="col offset-s3 s6">
-                    <div class="input-field">
-                        <input required type="text" id="name" class="validate" ng-model="vm.user.name">
-                        <label for="name">Nom</label>
-                    </div>
-                </div>
+            <form ng-submit="vm.signin()">
                 <div class="col offset-s3 s6">
                     <div class="input-field">
                         <input required type="email" id="mail" class="validate" ng-model="vm.user.email">
@@ -27,13 +21,13 @@
                     </div>
                 </div>
                 <div class="col offset-s3 s6">
-                    <button class="btn gruppetto-green white-text" type="submit"><i class="material-icons left">send</i>Inscription</button>
+                    <button class="btn gruppetto-green white-text" type="submit"><i class="material-icons left">send</i>Connexion</button>
                 </div>
             </form>
         </div>
         <div class="row">
             <div class="col s12 center">
-                <p>Déjà membre? <a ng-href="/connexion">Connectez-vous</a></p>
+                <p>Pas encore membre? <a ng-href="/inscription">Inscrivez-vous</a></p>
             </div>
         </div>
     </div>

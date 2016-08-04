@@ -3,7 +3,7 @@ node_js:
 - '6.2.1'
 before_script:
 - npm install -g gulp
-- npm install -g gulp-cli#4.0
+- npm install -g gulp-cli
 script: gulp
 notifications:
   slack: grupetto:tBoqgCKai9ikY4CCCy53qird

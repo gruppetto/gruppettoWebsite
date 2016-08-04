@@ -13,5 +13,17 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
       templateUrl: 'app/home/home.html',
       controller: 'homeCtrl',
       controllerAs: 'vm'
+    })
+    .state('inscription', {
+      url: '/inscription',
+      templateUrl: 'app/inscription/inscription.html',
+      controller: 'inscriptionCtrl',
+      controllerAs: 'vm'
+    })
+    .state('connexion', {
+      url: '/connexion',
+      templateUrl: 'app/connexion/connexion.html',
+      controller: 'connexionCtrl',
+      controllerAs: 'vm'
     });
 }
