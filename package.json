@@ -52,7 +52,7 @@
     "test": "gulp test",
     "test:auto": "gulp test:auto",
     "bower": "bower",
-    "postinstall": "npm install -g gulp && npm install -g gulp-cli && bower install && gulp"
+    "postinstall": "npm install gulp && npm install gulp-cli && bower install && gulp"
   },
   "dependencies": {
     "bower": "1.7.9",
