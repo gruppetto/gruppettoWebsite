@@ -7,6 +7,8 @@
     "angular-mocks": "^1.5.0-beta.2",
     "gulp-angular-templatecache": "^1.8.0",
     "del": "^2.0.2",
+    "gulp": "gulpjs/gulp#4ed9a4a3275559c73a396eff7e1fde3824951ebb",
+    "gulp-hub": "frankwallis/gulp-hub#d461b9c700df9010d0a8694e4af1fb96d9f38bf4",
     "gulp-filter": "^4.0.0",
     "gulp-util": "^3.0.7",
     "gulp-useref": "^3.0.3",
@@ -49,21 +51,7 @@
     "serve:dist": "gulp serve:dist",
     "test": "gulp test",
     "test:auto": "gulp test:auto",
-    "bower": "bower",
-    "postinstall": "npm install gulp && npm install gulp-cli && bower install && gulp"
-  },
-  "dependencies": {
-    "bower": "1.7.9",
-    "express": "4.13.3",
-    "gulp": "gulpjs/gulp#4ed9a4a3275559c73a396eff7e1fde3824951ebb",
-    "gulp-hub": "frankwallis/gulp-hub#d461b9c700df9010d0a8694e4af1fb96d9f38bf4"
-  },
-  "cacheDirectories": [
-    "node_modules"
-  ],
-  "engines": {
-    "node": "6.2.1",
-    "npm": "3.9.3"
+    "bower": "bower"
   },
   "eslintConfig": {
     "globals": {
