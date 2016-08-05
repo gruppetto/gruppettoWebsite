@@ -10,7 +10,7 @@ angular
             AuthService.login(vm.user)
               .then(function (data) {
                 if (data.data.success) {
-                  $window.open('/inside', '_self');
+                  $window.open('/account', '_self');
                 }
                 else {
                   vm.errorMessage = data.data.msg;
