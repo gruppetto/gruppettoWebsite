@@ -9,7 +9,7 @@
         <h5 class="header col s12 light">L'application qui permet à tous les sportifs de trouver leurs partenaires !</h5>
       </div>
       <div class="row center">
-        <a href="/inscription" id="download-button" class="btn btn-large gruppetto-green waves-effect waves-light">Commencer</a>
+        <a ng-href="{{vm.isAuthed ? '/account' : '/inscription' }}" id="download-button" class="btn btn-large gruppetto-green waves-effect waves-light">Commencer</a>
       </div>
       <br><br>
 

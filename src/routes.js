@@ -26,10 +26,16 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
       controller: 'connexionCtrl',
       controllerAs: 'vm'
     })
-    .state('inside', {
-      url: '/inside',
-      templateUrl: 'app/inside/inside.html',
-      controller: 'insideCtrl',
+    .state('account', {
+      url: '/account',
+      templateUrl: 'app/account/account.html',
+      controller: 'accountCtrl',
+      controllerAs: 'vm'
+    })
+    .state('newGroup', {
+      url: '/newgroup',
+      templateUrl: 'app/newGroup/newGroup.html',
+      controller: 'newGroupCtrl',
       controllerAs: 'vm'
     });
 }

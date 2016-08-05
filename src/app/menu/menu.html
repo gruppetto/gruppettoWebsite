@@ -2,6 +2,9 @@
     <div class="nav-wrapper container">
         <a id="logo-container" ng-href="/" class="brand-logo"><img src="img/logo1.png" class="responsive-img" /></a>
         <ul class="right hide-on-med-and-down">
+            <li ng-show="vm.isAuthed">
+                <a ng-href="/account" class="white-text">{{vm.user.name}}</a>
+            </li>
             <li>
                 <a ng-hide="vm.isAuthed" class="white-text" ng-href="/connexion">Connexion</a>
                 <a ng-show="vm.isAuthed" class="white-text" ng-click="vm.logout();">Déconnexion</a>
