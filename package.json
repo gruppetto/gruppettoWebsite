@@ -52,7 +52,7 @@
     "test": "gulp test",
     "test:auto": "gulp test:auto",
     "bower": "bower",
-    "postinstall": "bower install"
+    "postinstall": "bower install && gulp"
   },
   "dependencies": {
     "bower": "1.7.9",
