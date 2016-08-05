@@ -6,5 +6,5 @@ angular
   })
 
   .constant('API_ENDPOINT', {
-    url: 'http://gruppettoapi.herokuapp.com'
+    url: 'https://gruppettoapi.herokuapp.com'
   });
