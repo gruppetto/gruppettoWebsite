@@ -1,8 +1,8 @@
 <nav class="gruppetto-green" role="navigation">
     <div class="nav-wrapper container">
-        <a id="logo-container" ng-href="/" class="brand-logo"><img src="img/logo1.png" class="responsive-img" /></a>
+        <a id="logo-container" ng-click="vm.home();" class="brand-logo"><img src="img/logo1.png" class="responsive-img" /></a>
         <ul class="right hide-on-med-and-down">
-            <li ng-show="vm.isAuthed">
+            <li ng-show="vm.user">
                 <a ng-href="/account" class="white-text">{{vm.user.name}}</a>
             </li>
             <li>
@@ -12,7 +12,7 @@
         </ul>
 
         <ul id="nav-mobile" class="side-nav">
-            <li><a href="/connexion">Connexion</a></li>
+            <li><a ng-href="/connexion">Connexion</a></li>
         </ul>
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>

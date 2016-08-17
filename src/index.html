@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html ng-app="app">
   <head>
     <base href="/">
     <meta charset="utf-8">
@@ -24,9 +24,13 @@
   </head>
 
 
-  <body ng-app="app">
-    <gpt-menu></gpt-menu>
-    <ui-view></ui-view>
+  <body ng-controller="ApplicationController">
+  <gpt-loader></gpt-loader>
+
+  <gpt-menu></gpt-menu>
+    <ng-view></ng-view>
+    <div login-dialog ng-if="!isLoginPage"></div>
+
     <gpt-footer></gpt-footer>
   </body>
 

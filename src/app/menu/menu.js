@@ -3,20 +3,29 @@ angular
   .component('gptMenu', {
     templateUrl: 'app/menu/menu.html',
     controllerAs: 'vm',
-    controller: function ($window, AuthService, userService) {
+    controller: function ($window, $rootScope, AuthService) {
       var vm = this;
+
+      vm.home = function () {
+        $window.open('/', '_self');
+      };
+
+      vm.logout = function () {
+        $rootScope.$broadcast('loading');
+
+        AuthService.logout()
+          .then(function () {
+            $window.open('/', '_self');
+            $rootScope.$broadcast('loaded');
+          });
+      };
 
       vm.isAuthed = AuthService.isAuthed();
 
-      userService.getUser()
-        .then(function (user) {
+      if (vm.isAuthed) {
+        AuthService.getUserInformation().then(function (user) {
           vm.user = user;
         });
-
-      vm.logout = function () {
-        AuthService.logout().then(function () {
-          $window.open('/', '_self');
-        });
-      };
+      }
     }
   });

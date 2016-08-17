@@ -10,9 +10,13 @@ angular.module('app')
     self.getToken = function () {
       return $window.localStorage["jwttoken"];
     };
+
+    self.deleteToken = function () {
+      return $window.localStorage.removeItem('jwttoken');
+    }
   })
 
-  .service('AuthService', function ($window, $q, $http, API_ENDPOINT, AuthTool, userService) {
+  .service('AuthService', function ($window, $q, $http, API_ENDPOINT, AuthTool, Session) {
     var self = this;
 
     self.register = function (user) {
@@ -20,17 +24,22 @@ angular.module('app')
     };
 
     self.login = function (user) {
-      return $http.post(API_ENDPOINT.url + '/authenticate', user);
+      return $http
+        .post(API_ENDPOINT.url + '/authenticate', user)
+        .then(function (res) {
+          Session.create(res.data);
+          return res.data
+        });
     };
 
-    self.getUserInfo = function () {
-      return $http.get(API_ENDPOINT.url + '/memberInfo');
+    self.getUserInformation = function() {
+      return $http.get(API_ENDPOINT.url + '/memberInfo').then(function (data) {
+        return data.data.user;
+      });
     };
 
     self.logout = function () {
-      return $q.resolve($window.localStorage.removeItem('jwttoken')).then(function() {
-        userService.deleteUser();
-      });
+      return Session.destroy();
     };
 
     self.parseJwt = function (token) {
@@ -44,35 +53,12 @@ angular.module('app')
 
       return token;
     };
-  })
 
-  .factory('AuthInterceptor', function ($q, $window, AuthTool, API_ENDPOINT) {
-    return {
-      response: function (response) {
-        if (response.config.url.indexOf(API_ENDPOINT.url) === 0 && response.data.token) {
-          AuthTool.saveToken(response.data.token);
-        }
-
-        return response;
-      },
-      request: function (config) {
-        var token = AuthTool.getToken();
-        if (config.url.indexOf(API_ENDPOINT.url) === 0 && token) {
-          config.headers.Authorization = token;
-        }
-
-        return config;
-      },
-      responseError: function (response) {
-        if (response.status === 401) {
-          $window.open('/', '_self');
-        }
-
-        return $q.reject(response);
+    self.isAuthorized = function (authorizedRoles) {
+      if (!angular.isArray(authorizedRoles)) {
+        authorizedRoles = [authorizedRoles];
       }
+      return (self.isAuthed() && authorizedRoles.indexOf(Session.userRole) !== -1);
     };
-  })
 
-  .config(function ($httpProvider) {
-    $httpProvider.interceptors.push('AuthInterceptor');
   });

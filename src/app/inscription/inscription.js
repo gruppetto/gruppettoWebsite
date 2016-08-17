@@ -1,9 +1,10 @@
 angular
   .module('app')
-  .controller('inscriptionCtrl', function ($state, $window, AuthService) {
+  .controller('inscriptionCtrl', function ($window, AuthService) {
     var vm = this;
 
     vm.signup = function () {
+      $rootScope.$broadcast('loading');
       AuthService.signup(vm.user)
         .then(function (data) {
           if (data.data.success) {
@@ -11,8 +12,10 @@ angular
               .then(function (data) {
                 if (data.data.success) {
                   $window.open('/account', '_self');
+                  $rootScope.$broadcast('loaded');
                 }
                 else {
+                  $rootScope.$broadcast('loaded');
                   vm.errorMessage = data.data.msg;
                 }
               })
@@ -21,6 +24,7 @@ angular
               });
           }
           else {
+            $rootScope.$broadcast('loaded');
             vm.errorMessage = data.data.msg;
           }
         })

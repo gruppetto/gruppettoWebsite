@@ -8,9 +8,7 @@ angular.module('app')
 
         $http.get(API_ENDPOINT.url + '/users/' + vm.user._id + '/groups')
           .then(function (data) {
-
             vm.user.groups = data.data;
-            console.log(data.data);
           });
       });
   });

@@ -5,18 +5,18 @@
                 <h1>Connexion</h1>
             </div>
             <div class="col s12">
-                <span class="red-text" ng-show="vm.errorMessage"><i class="left material-icons">warning</i>{{vm.errorMessage}}</span>
+                <span class="red-text" ng-show="errorMessage"><i class="left material-icons">warning</i>{{errorMessage}}</span>
             </div>
-            <form ng-submit="vm.signin()">
+            <form name="loginForm" ng-controller="connexionCtrl" ng-submit="signin()">
                 <div class="col offset-s3 s6">
                     <div class="input-field">
-                        <input required type="email" id="mail" class="validate" ng-model="vm.user.email">
+                        <input required type="email" id="mail" class="validate" ng-model="user.email">
                         <label for="mail">Adresse mail</label>
                     </div>
                 </div>
                 <div class="col offset-s3 s6">
                     <div class="input-field">
-                        <input required type="password" id="pwd" class="validate" ng-model="vm.user.password">
+                        <input required type="password" id="pwd" class="validate" ng-model="user.password">
                         <label for="pwd">Mot de passe</label>
                     </div>
                 </div>

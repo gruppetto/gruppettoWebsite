@@ -3,39 +3,49 @@ angular
   .config(routesConfig);
 
 /** @ngInject */
-function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
-  $locationProvider.html5Mode(true).hashPrefix('!');
-  $urlRouterProvider.otherwise('/');
+function routesConfig($locationProvider, $routeProvider, USER_ROLES) {
+  $locationProvider.html5Mode(true);
 
-  $stateProvider
-    .state('home', {
-      url: '/',
+  $routeProvider
+    .when('/', {
       templateUrl: 'app/home/home.html',
       controller: 'homeCtrl',
-      controllerAs: 'vm'
+      controllerAs: 'vm',
+      data: {
+        authorizedRoles: [USER_ROLES.all]
+      }
     })
-    .state('inscription', {
-      url: '/inscription',
+    .when('/inscription', {
       templateUrl: 'app/inscription/inscription.html',
       controller: 'inscriptionCtrl',
-      controllerAs: 'vm'
+      controllerAs: 'vm',
+      data: {
+        authorizedRoles: [USER_ROLES.all]
+      }
     })
-    .state('connexion', {
-      url: '/connexion',
+    .when('/connexion', {
       templateUrl: 'app/connexion/connexion.html',
       controller: 'connexionCtrl',
-      controllerAs: 'vm'
+      data: {
+        authorizedRoles: [USER_ROLES.all]
+      }
     })
-    .state('account', {
-      url: '/account',
+    .when('/account', {
       templateUrl: 'app/account/account.html',
       controller: 'accountCtrl',
-      controllerAs: 'vm'
+      controllerAs: 'vm',
+      data: {
+        authorizedRoles: [USER_ROLES.member, USER_ROLES.admin]
+      }
     })
-    .state('newGroup', {
-      url: '/newgroup',
+    .when('/newgroup', {
       templateUrl: 'app/newGroup/newGroup.html',
       controller: 'newGroupCtrl',
-      controllerAs: 'vm'
-    });
+      controllerAs: 'vm',
+      data: {
+        authorizedRoles: [USER_ROLES.member, USER_ROLES.admin]
+      }
+    })
+
+    .otherwise({redirectTo: '/'});
 }

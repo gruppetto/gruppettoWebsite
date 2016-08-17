@@ -1,6 +1,6 @@
 angular
   .module('app')
-  .controller('homeCtrl', function (AuthService) {
+  .controller('homeCtrl', function ($timeout, AuthService) {
     var vm = this;
 
     vm.isAuthed = AuthService.isAuthed();
