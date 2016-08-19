@@ -39,7 +39,7 @@ function routesConfig($locationProvider, $routeProvider, USER_ROLES) {
       }
     })
     .when('/newgroup', {
-      templateUrl: 'app/newGroup/newGroup.html',
+      templateUrl: 'app/groups/newGroup.html',
       controller: 'newGroupCtrl',
       controllerAs: 'vm',
       data: {
@@ -49,6 +49,22 @@ function routesConfig($locationProvider, $routeProvider, USER_ROLES) {
     .when('/groups', {
       templateUrl: 'app/groups/groups.html',
       controller: 'groupsCtrl',
+      controllerAs: 'vm',
+      data: {
+        authorizedRoles: [USER_ROLES.member, USER_ROLES.admin]
+      }
+    })
+    .when('/groups/:id', {
+      templateUrl: 'app/groups/group.html',
+      controller: 'groupCtrl',
+      controllerAs: 'vm',
+      data: {
+        authorizedRoles: [USER_ROLES.member, USER_ROLES.admin]
+      }
+    })
+    .when('/users/:id', {
+      templateUrl: 'app/users/user.html',
+      controller: 'userCtrl',
       controllerAs: 'vm',
       data: {
         authorizedRoles: [USER_ROLES.member, USER_ROLES.admin]

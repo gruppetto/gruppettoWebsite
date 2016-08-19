@@ -1,11 +1,6 @@
 <div class="container">
     <div class="card-panel">
         <div class="row">
-            <div class="col s12">
-                <h3>Mon profil</h3>
-            </div>
-        </div>
-        <div class="row">
             <div class="col s12 m6">
                 <div class="card small">
                     <div class="card-image">
@@ -14,9 +9,6 @@
                     </div>
                     <div class="card-content">
                         <p><i class="material-icons left">email</i><span>{{vm.user.email}}</span></p>
-                    </div>
-                    <div class="card-action">
-                        <a href="/account">éditer</a>
                     </div>
                 </div>
             </div>
@@ -37,7 +29,7 @@
         <div class="divider"></div>
         <div class="row">
             <div class="col s12">
-                <h3>Mes groupes</h3>
+                <h3>Ses groupes</h3>
             </div>
         </div>
         <div class="row">
@@ -56,20 +48,10 @@
                                 <p>Admins: <span ng-repeat="admin in group.admin">{{admin.name}} </span></p>
                             </a>
                         </div>
-                        <div class="card-action">
-                            <a ng-click="vm.leaveGroup(group);">Quitter</a>
-                            <a ng-show="group.isAdminByUser" ng-click="vm.deleteGroup(group, $index);">Supprimer</a>
-                        </div>
                     </div>
                 </div>
             </div>
 
-        </div>
-        <div class="row">
-            <div class="col s12">
-                <a href="/newgroup" class="btn gruppetto-green">Créer un groupe</a>
-                <a href="/groups" class="btn gruppetto-green">Rechercher un groupe</a>
-            </div>
         </div>
 
     </div>

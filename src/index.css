@@ -67,3 +67,7 @@ footer.page-footer {
 .notif-container.active {
   display:block;
 }
+
+a{
+  cursor:pointer;
+}
