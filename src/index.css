@@ -57,3 +57,13 @@ a#logo-container img {
 
 footer.page-footer {
   margin: 0; }
+
+.notif-container {
+  right:10px;
+  bottom:10px;
+  display:none;
+}
+
+.notif-container.active {
+  display:block;
+}

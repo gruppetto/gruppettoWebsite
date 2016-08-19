@@ -46,6 +46,14 @@ function routesConfig($locationProvider, $routeProvider, USER_ROLES) {
         authorizedRoles: [USER_ROLES.member, USER_ROLES.admin]
       }
     })
+    .when('/groups', {
+      templateUrl: 'app/groups/groups.html',
+      controller: 'groupsCtrl',
+      controllerAs: 'vm',
+      data: {
+        authorizedRoles: [USER_ROLES.member, USER_ROLES.admin]
+      }
+    })
 
     .otherwise({redirectTo: '/'});
 }

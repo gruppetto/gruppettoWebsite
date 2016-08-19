@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="card-panel">
+        <div class="row">
+            <div class="col s12">
+                <h3>Groupes</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m6" ng-repeat="group in vm.groups">
+                <div class="card horizontal">
+                    <div class="card-image">
+                        <img ng-src="{{group.imageLink || 'img/backgroundV2.JPG'}}">
+                    </div>
+                    <div class="card-stacked">
+                        <div class="card-content">
+                            <h5>{{group.name || 'Nom du groupe'}}</h5>
+                            <p>{{group.members.length}} membres</p>
+                            <p>Admins: <span ng-repeat="admin in group.admin">{{admin.name}} </span></p>
+                        </div>
+                        <div class="card-action">
+                            <a ng-show="!group.isAdminByUser && !group.hasUserAsMember" ng-click="vm.joinGroup(group);">Rejoindre</a>
+                            <a ng-show="group.hasUserAsMember" ng-click="vm.leaveGroup(group);">Quitter</a>
+                            <a ng-show="group.isAdminByUser && group.hasUserAsMember" ng-click="vm.deleteGroup(group, $index);">Supprimer</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <a href="/newgroup" class="btn gruppetto-green">Créer un groupe</a>
+            </div>
+        </div>
+
+    </div>
+</div>

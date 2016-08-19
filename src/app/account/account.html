@@ -54,8 +54,8 @@
 
                         </div>
                         <div class="card-action">
-                            <a href="#">Quitter</a>
-                            <a href="#">Supprimer</a>
+                            <a ng-click="vm.leaveGroup(group);">Quitter</a>
+                            <a ng-show="group.isAdminByUser" ng-click="vm.deleteGroup(group, $index);">Supprimer</a>
                         </div>
                     </div>
                 </div>
@@ -65,6 +65,7 @@
         <div class="row">
             <div class="col s12">
                 <a href="/newgroup" class="btn gruppetto-green">Créer un groupe</a>
+                <a href="/groups" class="btn gruppetto-green">Rechercher un groupe</a>
             </div>
         </div>
 
