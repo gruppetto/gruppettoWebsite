@@ -1,16 +1,17 @@
 angular
   .module('app')
-  .controller('inscriptionCtrl', function ($window, AuthService) {
+  .controller('inscriptionCtrl', function ($window, $rootScope, AuthService) {
     var vm = this;
 
     vm.signup = function () {
       $rootScope.$broadcast('loading');
-      AuthService.signup(vm.user)
+      AuthService.register(vm.user)
         .then(function (data) {
           if (data.data.success) {
             AuthService.login(vm.user)
               .then(function (data) {
-                if (data.data.success) {
+                console.log(data);
+                if (data.success) {
                   $window.open('/account', '_self');
                   $rootScope.$broadcast('loaded');
                 }
