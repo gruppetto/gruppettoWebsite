@@ -3,6 +3,67 @@ angular.module('app')
     var vm = this;
     $rootScope.$broadcast('loading');
 
+    vm.newSport = {
+      name: null,
+      level: null,
+      frequency: null
+    };
+
+    vm.showUpdateForm = function () {
+      vm.updatedUser = vm.user;
+      vm.showUserUpdateForm = true;
+    };
+
+    vm.hideUpdateForm = function () {
+      vm.updatedUser = vm.user;
+      vm.showUserUpdateForm = false;
+    };
+
+    vm.updateAccount = function () {
+      $rootScope.$broadcast('loading');
+
+      $http
+        .put(API_ENDPOINT.url + '/users/' + vm.user._id, {
+          name: vm.updatedUser.name,
+          email: vm.updatedUser.email
+        })
+        .then(function () {
+
+          vm.showUserUpdateForm = false;
+          vm.user = vm.updatedUser;
+
+          $rootScope.$broadcast('loaded');
+
+        }, function (data) {
+          console.log(data);
+        });
+    };
+
+    vm.addNewSport = function() {
+      $rootScope.$broadcast('loading');
+
+      vm.user.sports.push(vm.newSport);
+
+      $http
+        .put(API_ENDPOINT.url + '/users/' + vm.user._id, {
+          sports: vm.user.sports
+        })
+        .then(function () {
+
+          vm.newSport = {
+            name: null,
+            level: null,
+            frequency: null
+          };
+
+          $rootScope.$broadcast('loaded');
+
+        }, function (data) {
+          console.log(data);
+        });
+    };
+
+
     $http.get(API_ENDPOINT.url + '/memberInfo')
       .then(function (data) {
         vm.user = data.data.user;

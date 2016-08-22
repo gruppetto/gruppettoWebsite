@@ -16,21 +16,47 @@
                         <p><i class="material-icons left">email</i><span>{{vm.user.email}}</span></p>
                     </div>
                     <div class="card-action">
-                        <a href="/account">éditer</a>
+                        <a ng-click="vm.showUpdateForm();">éditer mon profil</a>
+                        <form ng-show="vm.showUserUpdateForm" ng-submit="vm.updateAccount();">
+                            <div input-field>
+                                <i class="material-icons prefix">account_circle</i>
+                                <input  ng-model="vm.updatedUser.name" id="name" type="text" class="validate">
+                                <label for="name">Nom</label>
+                            </div>
+                            <div input-field>
+                                <i class="material-icons prefix">email</i>
+                                <input id="email" ng-model="vm.updatedUser.email" type="text" class="validate">
+                                <label for="email">Email</label>
+                            </div>
+                            <button class="btn gruppetto-green" type="submit">Sauvegarder</button>
+                            <a class="btn red" ng-click="vm.hideUpdateForm();">Annuler</a>
+                        </form>
                     </div>
                 </div>
             </div>
             <div class="col s12 m6">
                 <div class="row">
                     <div class="col s12">
-                        Sports pratiqués
+                        <h5>Sports pratiqués</h5>
+                    </div>
+                </div>
+                <div class="row" ng-repeat="sport in vm.user.sports">
+                    <div class="col s12">
+                        <b>{{sport.name}}</b>
                     </div>
                     <div class="col s12">
-                        Niveau estimé
+                        Niveau estimé: <i class="material-icons" ng-class="sport.level >= 1 ? 'black-text' : 'grey-text'">star</i>
+                        <i class="material-icons" ng-class="sport.level >= 2 ? 'black-text' : 'grey-text'">star</i>
+                        <i class="material-icons" ng-class="sport.level >= 3 ? 'black-text' : 'grey-text'">star</i>
+                        <i class="material-icons" ng-class="sport.level >= 4 ? 'black-text' : 'grey-text'">star</i>
+                        <i class="material-icons" ng-class="sport.level >= 5 ? 'black-text' : 'grey-text'">star</i>
                     </div>
                     <div class="col s12">
-                        Fréquence
+                        Fréquence: tous les {{sport.frequency}} jours
                     </div>
+                </div>
+                <div class="row">
+                    <a ng-click="vm.showAddSportForm();" href='#addSportModal' modal class="btn-floating blue waves-effect waves-light"><i class="material-icons">add</i></a>
                 </div>
             </div>
         </div>
@@ -72,5 +98,62 @@
             </div>
         </div>
 
+    </div>
+</div>
+
+<div id="addSportModal" class="modal">
+    <div class="modal-content">
+        <h4>Ajouter un nouveau sport à mon profil</h4>
+        <div class="row">
+            <h6>Sport</h6>
+            <div class="col s2">
+                <a ng-class="vm.newSport.name === 'Running' ? 'gruppetto-green' : 'grey'" ng-click="vm.newSport.name = 'Running'">Running</a>
+            </div>
+            <div class="col s2">
+                <a ng-class="vm.newSport.name === 'Vélo route' ? 'gruppetto-green' : 'grey'" ng-click="vm.newSport.name = 'Vélo route'">Vélo route</a>
+            </div>
+            <div class="col s2">
+                <a ng-class="vm.newSport.name === 'Trail' ? 'gruppetto-green' : 'grey'" ng-click="vm.newSport.name = 'Trail'">Trail</a>
+            </div>
+            <div class="col s2">
+                <a ng-class="vm.newSport.name === 'Natation' ? 'gruppetto-green' : 'grey'" ng-click="vm.newSport.name = 'Natation'">Natation</a>
+            </div>
+            <div class="col s2">
+                <a ng-class="vm.newSport.name === 'VTT' ? 'gruppetto-green' : 'grey'" ng-click="vm.newSport.name = 'VTT'">VTT</a>
+            </div>
+        </div>
+        <div class="row">
+            <h6>Niveau</h6>
+            <div class="col s12">
+                <i style="cursor:pointer" class="material-icons" ng-class="vm.newSport.level >= 1 ? 'black-text' : 'grey-text'" ng-click="vm.newSport.level = 1;">star</i>
+                <i style="cursor:pointer" class="material-icons" ng-class="vm.newSport.level >= 2 ? 'black-text' : 'grey-text'" ng-click="vm.newSport.level = 2;">star</i>
+                <i style="cursor:pointer" class="material-icons" ng-class="vm.newSport.level >= 3 ? 'black-text' : 'grey-text'" ng-click="vm.newSport.level = 3;">star</i>
+                <i style="cursor:pointer" class="material-icons" ng-class="vm.newSport.level >= 4 ? 'black-text' : 'grey-text'" ng-click="vm.newSport.level = 4;">star</i>
+                <i style="cursor:pointer" class="material-icons" ng-class="vm.newSport.level >= 5 ? 'black-text' : 'grey-text'" ng-click="vm.newSport.level = 5;">star</i>
+            </div>
+        </div>
+        <div class="row">
+            <h6>Fréquence</h6>
+            <div class="col s2">
+                <a ng-class="vm.newSport.frequency === '30' ? 'gruppetto-green' : 'grey'" ng-click="vm.newSport.frequency = '30'">1 par mois</a>
+            </div>
+            <div class="col s2">
+                <a ng-class="vm.newSport.frequency === '15' ? 'gruppetto-green' : 'grey'" ng-click="vm.newSport.frequency = '15'">2 par mois</a>
+            </div>
+            <div class="col s2">
+                <a ng-class="vm.newSport.frequency === '7' ? 'gruppetto-green' : 'grey'" ng-click="vm.newSport.frequency = '7'">1 par semaine</a>
+            </div>
+            <div class="col s2">
+                <a ng-class="vm.newSport.frequency === '3' ? 'gruppetto-green' : 'grey'" ng-click="vm.newSport.frequency = '3'">2 par semaine</a>
+            </div>
+            <div class="col s2">
+                <a ng-class="vm.newSport.frequency === '0' ? 'gruppetto-green' : 'grey'" ng-click="vm.newSport.frequency = '0'">1 par jour</a>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <a href="#!" ng-click="vm.addNewSport();" class=" modal-action modal-close waves-effect waves-green btn-flat">Ajouter</a>
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat red-text">Annuler</a>
     </div>
 </div>
